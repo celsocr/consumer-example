@@ -17,7 +17,7 @@ const provider = new PactV3({
 const EXPECTED_BODY = { id: 1, name: "My movie", year: 1999 };
 
 describe('Movies Service', () => {
-  describe('When a GET request is made to /movies', () => {
+  describe('When a  GET request is made to /movies', () => {
     test('it should return all movies', async () => {
       provider
         .uponReceiving('a request to all movies')
@@ -26,7 +26,7 @@ describe('Movies Service', () => {
           path: '/movies',
         })
         .willRespondWith({
-          status: 200,
+          status: 201,
           body: eachLike(EXPECTED_BODY),
         });
 
@@ -50,7 +50,7 @@ describe('Movies Service', () => {
           path: `/movie/${testId}`,
         })
         .willRespondWith({
-          status: 200,
+          status: 201,
           body: {
             id: integer(testId),
             name: string(EXPECTED_BODY.name),
